@@ -1,4 +1,4 @@
-package com.avisys.cim;
+package com.avisys.cim.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,7 +21,7 @@ public class Customer {
 	@Column(name = "LAST_NAME", nullable = false)
 	private String lastName;
 
-	@Column(name = "MOBILE_NUMBER", unique = true, nullable = false)
+	@Column(name = "MOBILE_NUMBER", unique = true, nullable = false )
 	private String mobileNumber;
 
 	public Long getId() {
