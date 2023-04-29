@@ -1,0 +1,138 @@
+1) URL: localhost:8083/customer
+Method: GET
+Status Code: 200 OK
+
+responce : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    },
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumber": "9111111112"
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobileNumber": "9111111113"
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobileNumber": "9111111114"
+    }
+]
+
+
+2) URL: localhost:8083/customer?firstName=a
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobileNumber": "9111111114"
+    }
+]
+
+
+3)URL: localhost:8083/customer?lastName=h
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobileNumber": "9111111113"
+    }
+]
+
+5) URL: localhost:8083/customer?firstName=Alan&lastName=Smith
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    }
+]
+
+
+6) URL: localhost:8083/customer?mobileNumber=9111111111&lastName=Smith
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    }
+]
+
+7) URL: localhost:8083/customer?firstName=Alan&lastName=Smith&mobileNumber=9111111111
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    }
+]
+
+
+8) URL: localhost:8083/customer?firstName=Alan&mobileNumber=9111111111
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    }
+]
+
+9)URL: localhost:8083/customer?mobileNumber=9111111111
+Method: GET
+Status Code: 200 OK
+responce :
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumber": "9111111111"
+    }
+]

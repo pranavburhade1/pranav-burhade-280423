@@ -9,6 +9,7 @@ public interface CustomerService {
 	
 	public List<Customer> getCustomers(String firstName, String lastName, String mobileNumber);
 	
+	public Customer addCustomer(Customer customer);
 
 
 }

@@ -5,11 +5,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.avisys.cim.entities.Customer;
 import com.avisys.cim.repositories.CustomerRepository;
 
 @Service
+@Transactional
 public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
@@ -49,6 +51,14 @@ public class CustomerServiceImpl implements CustomerService{
 		}
 		
 		 return Collections.emptyList();
+	}
+	
+	
+	
+	public Customer addCustomer(Customer customer) {
+		
+		return cRepository.save(customer);
+		
 	}
 
 }
