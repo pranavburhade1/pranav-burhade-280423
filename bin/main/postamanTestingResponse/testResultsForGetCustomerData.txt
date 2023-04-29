@@ -136,3 +136,30 @@ responce :
         "mobileNumber": "9111111111"
     }
 ]
+
+10 )first time adding customer :
+ URL: localhost:8083/customer/add
+Method: POST
+Status Code: 200 OK
+
+
+response : 
+{
+    "id": 8,
+    "firstName": "pranav",
+    "lastName": "burhade",
+    "mobileNumber": "775688888"
+}
+
+11) second time adding customer with same details
+
+URL: localhost:8083/customer/add
+Method: POST
+Status Code: 500 Internal Server Error
+
+response : 
+{
+    "message": "Unable to create Customer. Mobile number already present.",
+    "errorDetails": "could not execute statement; SQL [n/a]; constraint [\"PUBLIC.CUSTOMER_UK1_INDEX_5 ON PUBLIC.CUSTOMER(MOBILE_NUMBER NULLS FIRST) VALUES ( /* 6 */ '775688888' )\"; SQL statement:\ninsert into customer (id, first_name, last_name, mobile_number) values (default, ?, ?, ?) [23505-214]]",
+    "timeStamp": "2023-04-30T01:03:08.5102091"
+}

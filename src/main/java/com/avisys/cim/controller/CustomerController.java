@@ -10,11 +10,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.avisys.cim.dto.ApiResponse;
 import com.avisys.cim.entities.Customer;
+import com.avisys.cim.entities.MobileNumber;
 import com.avisys.cim.services.CustomerService;
+import com.avisys.cim.services.MobileNumberService;
 
 @RestController
 @RequestMapping("customer")
@@ -24,6 +27,8 @@ public class CustomerController {
 	@Autowired
 	private CustomerService cService;
 	
+
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Customer>> getCustomers(@RequestParam(required = false) String firstName,
@@ -31,6 +36,7 @@ public class CustomerController {
 			@RequestParam(required = false) String mobileNumber) {
 		
 		List<Customer> customers = cService.getCustomers(firstName, lastName, mobileNumber);
+		System.out.print( customers.get(0).getMobileNumbers().get(0));
 	
 		 if (customers.isEmpty()) {
 		        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); 
@@ -53,5 +59,7 @@ public class CustomerController {
 	    return ResponseEntity.status(HttpStatus.OK).body(customerFromDB);
 		
 	}
+	
+	
 
 }

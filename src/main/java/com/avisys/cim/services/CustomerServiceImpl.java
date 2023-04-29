@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.avisys.cim.entities.Customer;
+import com.avisys.cim.entities.MobileNumber;
 import com.avisys.cim.repositories.CustomerRepository;
+import com.avisys.cim.repositories.MobileNumberRepository;
 
 @Service
 @Transactional
@@ -16,12 +18,16 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	@Autowired
 	private CustomerRepository cRepository;
+	
+	@Autowired
+	private MobileNumberRepository mRepository;
 
 	@Override
 	public List<Customer> getCustomers(String firstName, String lastName, String mobileNumber) {
 		
 		if(firstName == null && lastName == null && mobileNumber == null) {
-			return cRepository.getAllCustomers();
+			System.out.println("sus");
+			return cRepository.findAll();
 		}
 		
 		if((firstName != null && lastName != null && mobileNumber != null)) {
@@ -57,7 +63,14 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	public Customer addCustomer(Customer customer) {
 		
-		return cRepository.save(customer);
+		for(int i = 0; i < customer.getMobileNumbers().size();i++) {
+			customer.getMobileNumbers().get(i).setCustomer(customer);
+		}
+		Customer customerReturn = cRepository.save(customer);
+		
+	
+
+		return customerReturn;
 		
 	}
 
