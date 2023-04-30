@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,9 @@ public class CustomerController {
 	@Autowired
 	private CustomerService cService;
 	
+	@Autowired
+	private MobileNumberService mService;
+	
 
 	
 	
@@ -36,7 +40,6 @@ public class CustomerController {
 			@RequestParam(required = false) String mobileNumber) {
 		
 		List<Customer> customers = cService.getCustomers(firstName, lastName, mobileNumber);
-		System.out.print( customers.get(0).getMobileNumbers().get(0));
 	
 		 if (customers.isEmpty()) {
 		        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); 
@@ -57,6 +60,20 @@ public class CustomerController {
 			
 		}
 	    return ResponseEntity.status(HttpStatus.OK).body(customerFromDB);
+		
+	}
+	
+	@DeleteMapping("/delete") 
+	public ResponseEntity<?> deleteByMobileNumber(@RequestParam String mobileNumber) {
+		
+		List<Customer> customer = cService.getCustomers(null, null, mobileNumber);
+		if(customer.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Unable to delete Customer.no customer with that Mobile number."));
+		}
+		else {
+			String msg =  cService.deleteCustomerByMobileNumber(customer.get(0), mobileNumber);
+			return ResponseEntity.status(HttpStatus.OK).body(msg);
+		}
 		
 	}
 	

@@ -34,7 +34,7 @@ public class CustomerServiceImpl implements CustomerService{
 			return cRepository.getCustomerByAllDetails(firstName,lastName,mobileNumber);
 		}
 		if((firstName != null && lastName != null)) {
-			System.err.println(firstName + " " + lastName);
+		
 			return cRepository.getCustomerByFirstAndLastName(firstName, lastName);
 		}
 		
@@ -72,6 +72,16 @@ public class CustomerServiceImpl implements CustomerService{
 
 		return customerReturn;
 		
+	}
+	
+	public String deleteCustomerByMobileNumber(Customer customer, String mobileNumber) {
+		try {
+		cRepository.delete(customer);
+		return "deleted sucessfully with mobile number " + mobileNumber;
+		}
+		catch(Exception e) {
+			return e.getMessage();
+		}
 	}
 
 }

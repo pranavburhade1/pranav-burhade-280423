@@ -7,5 +7,6 @@ import com.avisys.cim.entities.MobileNumber;
 
 public interface MobileNumberService {
 	
+	
 
 }
