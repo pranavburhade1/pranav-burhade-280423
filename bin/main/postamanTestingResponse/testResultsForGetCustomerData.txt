@@ -163,3 +163,26 @@ response :
     "errorDetails": "could not execute statement; SQL [n/a]; constraint [\"PUBLIC.CUSTOMER_UK1_INDEX_5 ON PUBLIC.CUSTOMER(MOBILE_NUMBER NULLS FIRST) VALUES ( /* 6 */ '775688888' )\"; SQL statement:\ninsert into customer (id, first_name, last_name, mobile_number) values (default, ?, ?, ?) [23505-214]]",
     "timeStamp": "2023-04-30T01:03:08.5102091"
 }
+
+12) add customer with multiple mobile numbers : 
+
+URL: localhost:8083/customer/add
+Method: POST
+Status Code: 200 OK
+
+response : 
+{
+    "id": 6,
+    "firstName": "dhanu",
+    "lastName": "burhade",
+    "mobileNumbers": [
+        {
+            "id": 8,
+            "mobileNumber": "6388999874"
+        },
+        {
+            "id": 9,
+            "mobileNumber": "53627442"
+        }
+    ]
+}

@@ -164,7 +164,249 @@ response :
     "timeStamp": "2023-04-30T01:03:08.5102091"
 }
 
-12) add customer with multiple mobile numbers : 
+
+12) after upadting customer entity with multiple mobile numbers  : 
+	URL: localhost:8083/customer
+Method: GET
+Status Code: 200 OK
+response : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "firstName": "Joe",
+        "lastName": "Turing",
+        "mobileNumbers": [
+            {
+                "id": 2,
+                "mobileNumber": "9111111112"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 3,
+                "mobileNumber": "9111111113"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobileNumbers": [
+            {
+                "id": 4,
+                "mobileNumber": "9111111114"
+            },
+            {
+                "id": 6,
+                "mobileNumber": "911156565114"
+            },
+            {
+                "id": 7,
+                "mobileNumber": "91687111115"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "firstName": "Katkhy",
+        "lastName": "Siyrra",
+        "mobileNumbers": [
+            {
+                "id": 5,
+                "mobileNumber": "9111111115"
+            }
+        ]
+    }
+]
+
+13)URL: localhost:8083/customer?firstName=a
+Method: GET
+Status Code: 200 OK
+
+response : [
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "firstName": "Kathy",
+        "lastName": "Sierra",
+        "mobileNumbers": [
+            {
+                "id": 4,
+                "mobileNumber": "9111111114"
+            },
+            {
+                "id": 6,
+                "mobileNumber": "911156565114"
+            },
+            {
+                "id": 7,
+                "mobileNumber": "91687111115"
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "firstName": "Katkhy",
+        "lastName": "Siyrra",
+        "mobileNumbers": [
+            {
+                "id": 5,
+                "mobileNumber": "9111111115"
+            }
+        ]
+    }
+]
+
+14)URL: localhost:8083/customer?lastName=h
+Method: GET
+Status Code: 200 OK
+
+response : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "firstName": "John",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 3,
+                "mobileNumber": "9111111113"
+            }
+        ]
+    }
+]
+
+
+15)URL: localhost:8083/customer?firstName=Alan&lastName=Smith
+Method: GET
+Status Code: 200 OK
+response : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    }
+]
+
+16) URL: localhost:8083/customer?mobileNumber=9111111111&lastName=Smith
+Method: GET
+Status Code: 200 OK
+response : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    }
+]
+
+17)URL: localhost:8083/customer?firstName=Alan&lastName=Smith&mobileNumber=9111111111
+Method: GET
+Status Code: 200 OK
+response : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    }
+]
+18) URL: localhost:8083/customer?firstName=Alan&mobileNumber=9111111111
+Method: GET
+Status Code: 200 OK
+
+response : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    }
+]
+
+19)URL: localhost:8083/customer?mobileNumber=9111111111
+Method: GET
+Status Code: 200 OK
+respose : 
+[
+    {
+        "id": 1,
+        "firstName": "Alan",
+        "lastName": "Smith",
+        "mobileNumbers": [
+            {
+                "id": 1,
+                "mobileNumber": "9111111111"
+            }
+        ]
+    }
+]
+
+
+20) add customer with multiple mobile numbers : 
 
 URL: localhost:8083/customer/add
 Method: POST
