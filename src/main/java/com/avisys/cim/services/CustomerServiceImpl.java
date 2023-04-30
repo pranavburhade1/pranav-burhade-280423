@@ -2,6 +2,7 @@ package com.avisys.cim.services;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -83,5 +84,11 @@ public class CustomerServiceImpl implements CustomerService{
 			return e.getMessage();
 		}
 	}
-
+	
+	
+	public Customer getCustomer(Long customerId) {
+		
+			return cRepository.findById(customerId).orElseThrow(()-> new RuntimeException("Mobile number adding failed. Customer not exist with this id"));
+			
+	}
 }

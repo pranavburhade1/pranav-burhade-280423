@@ -31,13 +31,14 @@ public class MobileNumber {
 	 public MobileNumber() {
 			super();
 		}
+	 public MobileNumber(Long id, String mobileNumber, Customer customer) {
+			super();
+			this.id = id;
+			this.mobileNumber = mobileNumber;
+			this.customer = customer;
+		}
 
-	public MobileNumber(Long id, String mobileNumber, Customer customer) {
-		super();
-		this.id = id;
-		this.mobileNumber = mobileNumber;
-		this.customer = customer;
-	}
+	
 	
 	
 

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -78,5 +79,48 @@ public class CustomerController {
 	}
 	
 	
+	@PutMapping("/addMobileNumber")
+	public ResponseEntity<?> addMobileNumberToExistingCustomer(@RequestParam String number, Long customerId) {
+		MobileNumber mobileNumber = new MobileNumber();
+		mobileNumber.setMobileNumber(number);
+		try {
+		Customer customer =  cService.getCustomer(customerId);
+		if(!(customer == null)) {
+		mobileNumber.setCustomer(customer);
+		try {
+			mService.addNumber(mobileNumber);
+			return ResponseEntity.status(HttpStatus.OK).body("Mobile number " + mobileNumber.getMobileNumber() + " added sucessfully to customer ID " + customerId);
+		}catch(Exception e) {
+			return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Mobile number adding failed. mobile number already used by other customer"));
+		}
+	
+		}
+		}
+		catch(Exception e) {
+			return  ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("Mobile number adding failed. No customer present with this id"));
 
-}
+		}
+		return null;
+	}
+	
+	
+	@DeleteMapping("/deleteMobileNumber")
+	public ResponseEntity<?> deleteMobileNumberToExstingCustomer(@RequestParam String number) {
+
+		MobileNumber mobileNumber = mService.getMobileNumber(number);
+		System.out.println(mobileNumber);
+		try {
+			String msg = mService.deleteByMobileNumber(mobileNumber);
+			return ResponseEntity.status(HttpStatus.OK).body(msg);
+		}
+		catch(Exception e) {
+			return  ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("MobileNumber not found to delete"));
+		}
+		
+		}
+		
+		
+	}
+	
+
+

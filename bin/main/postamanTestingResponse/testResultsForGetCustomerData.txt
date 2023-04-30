@@ -428,3 +428,13 @@ response :
         }
     ]
 }
+
+
+21) delete by mobile number : 
+URL: localhost:8083/customer/delete?mobileNumber=91687111115
+Method: DELETE
+Status Code: 200 OK
+response : 
+deleted sucessfully with mobile number 91687111115
+
+22)

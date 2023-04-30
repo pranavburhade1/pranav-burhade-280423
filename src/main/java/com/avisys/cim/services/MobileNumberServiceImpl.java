@@ -17,6 +17,29 @@ public class MobileNumberServiceImpl implements MobileNumberService {
 	
 	@Autowired
 	private MobileNumberRepository mRepository;
+
+	@Override
+	public MobileNumber addNumber(MobileNumber mobileNumber) {
+		
+		return mRepository.save(mobileNumber);
+	}
+
+	@Override
+	public MobileNumber getMobileNumber(String number) {
+		
+		return mRepository.findByMobileNumber(number);
+		
+	}
+
+	@Override
+	public String deleteByMobileNumber(MobileNumber mobileNumber) {
+		
+		mRepository.removeBYId(mobileNumber.getId());
+		
+		
+		return "Mobile Number " + mobileNumber.getMobileNumber() + " deleted sucessfully";
+		
+	}
 	
 	
 	
