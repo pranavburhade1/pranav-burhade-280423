@@ -8,11 +8,7 @@ const getCustomer = ()=> {
 }
 
 const filCustomer = (firstName, lastName ,mobileNumber)=> {
-   
 
-    // if(firstName == "") {firstName = am}
-    // if(lastName == "") {lastName = am}
-    // if(mobileNumber == "") {mobileNumber = am}
     return axiosServ.get("/customer",{
         params: {
           firstName: firstName,
@@ -22,4 +18,17 @@ const filCustomer = (firstName, lastName ,mobileNumber)=> {
       });
 
 }
-export default {getCustomer, filCustomer}
+
+const addCustomer = (customer)=> {
+ return axiosServ.post('/customer/add', customer);
+}
+
+const updateCustomer = (customer)=> {
+  return axiosServ.put('/customer/add', customer);
+ }
+
+const deleteCustomer = (mobileNumber)=> {
+  console.log(mobileNumber);
+  return axiosServ.delete('/customer/delete',{ params: {mobileNumber : mobileNumber}} );
+}
+export default {getCustomer, filCustomer, addCustomer,deleteCustomer, updateCustomer}
