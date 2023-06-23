@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,8 +24,8 @@ import com.avisys.cim.services.MobileNumberService;
 
 @RestController
 @RequestMapping("customer")
+@CrossOrigin("http://localhost:3000/")
 public class CustomerController {
-	
 	
 	@Autowired
 	private CustomerService cService;
@@ -39,6 +40,16 @@ public class CustomerController {
 	public ResponseEntity<List<Customer>> getCustomers(@RequestParam(required = false) String firstName,
 			@RequestParam(required = false) String lastName,
 			@RequestParam(required = false) String mobileNumber) {
+		if(firstName !=  null&& firstName.equals("")) {
+			firstName = null;
+		}
+		if(lastName !=  null && lastName.equals("")){
+			lastName = null;
+		}
+		if(mobileNumber !=  null && mobileNumber.equals("")){
+			mobileNumber = null;
+		}	
+System.out.println(firstName + " " + lastName + " " + mobileNumber);		
 		
 		List<Customer> customers = cService.getCustomers(firstName, lastName, mobileNumber);
 	
@@ -53,6 +64,22 @@ public class CustomerController {
 	@PostMapping("/add")
 	public ResponseEntity<?> addCustomer(@RequestBody Customer customer) {
 		Customer customerFromDB = null;
+		System.out.println(customer);
+		try {
+		customerFromDB = cService.addCustomer(customer);
+		}
+		catch(Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ApiResponse("Unable to create Customer. Mobile number already present.",e.getMessage()));
+			
+		}
+	    return ResponseEntity.status(HttpStatus.OK).body(customerFromDB);
+		
+	}
+	
+	@PutMapping("/add")
+	public ResponseEntity<?> updateCustomer(@RequestBody Customer customer) {
+		Customer customerFromDB = null;
+		System.out.println(customer);
 		try {
 		customerFromDB = cService.addCustomer(customer);
 		}

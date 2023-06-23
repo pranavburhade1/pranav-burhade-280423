@@ -251,6 +251,145 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "add customer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\r\n     \r\n        \"firstName\": \"dhanu\",\r\n        \"lastName\": \"burhade\",\r\n        \"mobileNumbers\" : [{\r\n        \"mobileNumber\": \"6388999874\"\r\n        }\r\n        ,{\r\n        \"mobileNumber\": \"53627442\"\r\n        }]\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8083/customer/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"customer",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get customer with multiple mobile number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/customer",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"customer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete customer with mobile number",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8083/customer/delete?mobileNumber=91687111115",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"customer",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "mobileNumber",
+							"value": "91687111115"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update mobile number to exsting customer",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8083/customer/addMobileNumber?number=88888990&customerId=1",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"customer",
+						"addMobileNumber"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "88888990"
+						},
+						{
+							"key": "customerId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deelete mobile number of existing customer",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "number",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8083/customer/deleteMobileNumber?number=9111111113",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"customer",
+						"deleteMobileNumber"
+					],
+					"query": [
+						{
+							"key": "number",
+							"value": "9111111113"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

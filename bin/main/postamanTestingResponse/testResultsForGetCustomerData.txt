@@ -1,4 +1,5 @@
-1) URL: localhost:8083/customer
+1)get request for getting customers details with or without filters
+ URL: localhost:8083/customer
 Method: GET
 Status Code: 200 OK
 
@@ -437,4 +438,16 @@ Status Code: 200 OK
 response : 
 deleted sucessfully with mobile number 91687111115
 
-22)
+22)add mobile number to exsting customer :
+URL: localhost:8083/customer/addMobileNumber?number=88888990&customerId=1
+Method: PUT
+Status Code: 200 OK
+response :
+Mobile number 88888990 added sucessfully to customer ID 1
+
+23)delete mobile number from databse
+URL: localhost:8083/customer/deleteMobileNumber?number=9111111113
+Method: DELETE
+Status Code: 200 OK
+response : 
+Mobile Number 9111111113 deleted sucessfully
